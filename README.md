@@ -1,7 +1,5 @@
 # Palmetto Dev and Design
 
-# Palmetto Dev and Design
-
 The portfolio website for **Palmetto Dev and Design**, built with [Next.js](https://nextjs.org/). It showcases our work, services, and ways to get in touch.
 
 **Live site:** [palmettodd.com](https://palmettodd.com)
