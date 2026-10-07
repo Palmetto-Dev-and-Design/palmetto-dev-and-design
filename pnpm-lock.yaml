@@ -32,6 +32,9 @@ importers:
       tailwind-merge:
         specifier: ^3.7.0
         version: 3.7.0
+      vaso:
+        specifier: ^1.0.0
+        version: 1.0.0(react@19.2.8)
     devDependencies:
       '@biomejs/biome':
         specifier: 2.4.2
@@ -687,6 +690,11 @@ packages:
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
+  vaso@1.0.0:
+    resolution: {integrity: sha512-O8b8TmJq2G9NMcaYRQTuu1alPMOCUoelyZJwFaRwo23H+h6ki9RX/rlOzs4IzpOWb9rSgzI+KvG+9f0zO4qD6g==}
+    peerDependencies:
+      react: ^18 || ^19
+
 snapshots:
 
   '@alloc/quick-lru@5.3.0': {}
@@ -1159,3 +1167,7 @@ snapshots:
   typescript@5.9.3: {}
 
   undici-types@6.21.0: {}
+
+  vaso@1.0.0(react@19.2.8):
+    dependencies:
+      react: 19.2.8

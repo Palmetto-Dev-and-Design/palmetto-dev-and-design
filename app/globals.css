@@ -88,6 +88,7 @@
   --text-32: 2rem;
   --text-40: 2.5rem;
   --text-64: 4rem;
+  --text-display-lg: 2.5rem;
 
   /* TYPOGRAPHY - line heights ---------- */
 
@@ -159,8 +160,7 @@
   /* FONTS ---------- */
   /* --font-sora, --font-dm-sans and --font-google-sans-code come from next/font in layout.tsx */
 
-  --font-sans:
-    var(--font-dm-sans), sans-serif; 
+  --font-sans: var(--font-dm-sans), sans-serif;
   --font-display: var(--font-sora), sans-serif;
   --font-mono:
     var(--font-google-sans-code, ui-monospace), "SFMono-Regular", Consolas,
@@ -237,6 +237,15 @@
   font-weight: 600;
   line-height: var(--leading-90);
   letter-spacing: var(--tracking-neg-1);
+  text-transform: uppercase;
+}
+
+@utility display-lg {
+  font-family: var(--font-sora), sans-serif;
+  font-size: var(--text-display-lg);
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: -1px;
   text-transform: uppercase;
 }
 
