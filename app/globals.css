@@ -4,76 +4,115 @@
   /* COLORS - raw ---------- */
 
   /* monochrome (neutrals) */
-  --color-mono-0: #FFFFFF;
-  --color-mono-50: #F8F8F7;
-  --color-mono-100: #EEEEEE;
-  --color-mono-200: #D9D9D9;
-  --color-mono-300: #C4C4C4;
-  --color-mono-400: #AFAFAF;
-  --color-mono-500: #9A9A99;
+  --color-mono-0: #ffffff;
+  --color-mono-50: #f8f8f7;
+  --color-mono-100: #eeeeee;
+  --color-mono-200: #d9d9d9;
+  --color-mono-300: #c4c4c4;
+  --color-mono-400: #afafaf;
+  --color-mono-500: #9a9a99;
   --color-mono-600: #868684;
-  --color-mono-700: #71716E;
-  --color-mono-800: #5C5C59;
+  --color-mono-700: #71716e;
+  --color-mono-800: #5c5c59;
   --color-mono-900: #474744;
-  --color-mono-950: #2D2D2D;
+  --color-mono-950: #2d2d2d;
 
-  --color-mono-alpha-15: #2D2D2D26;
-  --color-mono-alpha-25: #2D2D2D40;
-  --color-mono-alpha-45: #2D2D2D73;
+  --color-mono-alpha-15: #2d2d2d26;
+  --color-mono-alpha-25: #2d2d2d40;
+  --color-mono-alpha-45: #2d2d2d73;
 
   /* primary */
-  --color-pri-50: #FDF5EF;
-  --color-pri-100: #FAE2DA;
-  --color-pri-200: #F5CDB3;
-  --color-pri-300: #EEAB83;
-  --color-pri-400: #E67F51;
-  --color-pri-500: #E05B2A;
-  --color-pri-600: #D24724;
-  --color-pri-700: #AE3520;
-  --color-pri-800: #8B2D21;
-  --color-pri-900: #71271D;
-  --color-pri-950: #3D110D;
+  --color-pri-50: #fdf5ef;
+  --color-pri-100: #fae2da;
+  --color-pri-200: #f5cdb3;
+  --color-pri-300: #eeab83;
+  --color-pri-400: #e67f51;
+  --color-pri-500: #e05b2a;
+  --color-pri-600: #d24724;
+  --color-pri-700: #ae3520;
+  --color-pri-800: #8b2d21;
+  --color-pri-900: #71271d;
+  --color-pri-950: #3d110d;
 
-  --color-pri-alpha-10: #E05B2A1A;
-  --color-pri-alpha-25: #E05B2A40;
-  --color-pri-alpha-40: #E05B2A66;
-  --color-pri-alpha-50: #E05B2A80;
+  --color-pri-alpha-10: #e05b2a1a;
+  --color-pri-alpha-25: #e05b2a40;
+  --color-pri-alpha-40: #e05b2a66;
+  --color-pri-alpha-50: #e05b2a80;
 
   /* secondary */
-  --color-sec-50: #F9F7F3;
-  --color-sec-100: #F4F1EA;
-  --color-sec-200: #E1D8C7;
-  --color-sec-300: #CEBEA3;
-  --color-sec-400: #B9A07E;
-  --color-sec-500: #AB8A64;
-  --color-sec-600: #9E7958;
-  --color-sec-700: #83634B;
-  --color-sec-800: #6B5141;
+  --color-sec-50: #f9f7f3;
+  --color-sec-100: #f4f1ea;
+  --color-sec-200: #e1d8c7;
+  --color-sec-300: #cebea3;
+  --color-sec-400: #b9a07e;
+  --color-sec-500: #ab8a64;
+  --color-sec-600: #9e7958;
+  --color-sec-700: #83634b;
+  --color-sec-800: #6b5141;
   --color-sec-900: #584336;
-  --color-sec-950: #2E221C;
+  --color-sec-950: #2e221c;
 
-  --color-sec-alpha-15: #F4F1EA26;
-  --color-sec-alpha-25: #F4F1EA40;
-  --color-sec-alpha-45: #F4F1EA73;
+  --color-sec-alpha-15: #f4f1ea26;
+  --color-sec-alpha-25: #f4f1ea40;
+  --color-sec-alpha-45: #f4f1ea73;
 
   /* status - danger */
-  --color-status-err-bg: #FFF0ED;
-  --color-status-err-border: #CC4E3D;
-  --color-status-err-icon: #B63A2B;
-  --color-status-err-muted: #A02D22;
-  --color-status-err-text: #7F241B;
+  --color-status-err-bg: #fff0ed;
+  --color-status-err-border: #cc4e3d;
+  --color-status-err-icon: #b63a2b;
+  --color-status-err-muted: #a02d22;
+  --color-status-err-text: #7f241b;
 
   /* status - warning */
-  --color-status-warn-bg: #FFF7E6;
-  --color-status-warn-border: #E7B35A;
-  --color-status-warn-icon: #A95A00;
-  --color-status-warn-text: #6F3F00;
+  --color-status-warn-bg: #fff7e6;
+  --color-status-warn-border: #e7b35a;
+  --color-status-warn-icon: #a95a00;
+  --color-status-warn-text: #6f3f00;
 
   /* status - success */
-  --color-status-succ-bg: #EEF7F0;
-  --color-status-succ-border: #A7C8AE;
-  --color-status-succ-icon: #2F6B3B;
-  --color-status-succ-text: #214C2A;
+  --color-status-succ-bg: #eef7f0;
+  --color-status-succ-border: #a7c8ae;
+  --color-status-succ-icon: #2f6b3b;
+  --color-status-succ-text: #214c2a;
+
+  /* TYPOGRAPHY - sizes ---------- */
+
+  --text-10: 0.625rem;
+  --text-12: 0.75rem;
+  --text-14: 0.875rem;
+  --text-16: 1rem;
+  --text-18: 1.125rem;
+  --text-20: 1.25rem;
+  --text-24: 1.5rem;
+  --text-28: 1.75rem;
+  --text-32: 2rem;
+  --text-40: 2.5rem;
+  --text-64: 4rem;
+
+  /* TYPOGRAPHY - line heights ---------- */
+
+  --leading-16: 1rem;
+  --leading-20: 1.25rem;
+  --leading-22: 1.375rem;
+  --leading-24: 1.5rem;
+  --leading-27: 1.6875rem;
+  --leading-30: 1.875rem;
+  --leading-38: 2.375rem;
+  --leading-48: 3rem;
+  --leading-90: 0.9;
+
+  /* TYPOGRAPHY - tracking ---------- */
+
+  --tracking-neg-1: -0.0625rem;
+  --tracking-neg-06: -0.0375rem;
+  --tracking-neg-05: -0.03125rem;
+  --tracking-neg-03: -0.01875rem;
+  --tracking-neg-02: -0.0125rem;
+
+  --tracking-0: 0;
+  --tracking-05: 0.03125rem;
+  --tracking-06: 0.0375rem;
+  --tracking-08: 0.05rem;
 }
 
 @theme inline {
@@ -116,4 +155,365 @@
   /* action */
   --color-action-pri: var(--color-pri-600);
   --color-action-fg: var(--color-sec-50);
+
+  /* FONTS ---------- */
+  /* --font-sora, --font-dm-sans and --font-google-sans-code come from next/font in layout.tsx */
+
+  --font-sans:
+    var(--font-dm-sans), sans-serif; 
+  --font-display: var(--font-sora), sans-serif;
+  --font-mono:
+    var(--font-google-sans-code, ui-monospace), "SFMono-Regular", Consolas,
+    "Liberation Mono", monospace; /* font-mono */
+}
+
+/* TEXT STYLES ======================================= */
+
+/* HEADINGS - MOBILE ---------- */
+
+@utility heading-1-mobile {
+  font-family: var(--font-sora), sans-serif;
+  font-size: var(--text-32);
+  font-weight: 600;
+  line-height: var(--leading-38);
+  letter-spacing: var(--tracking-neg-1);
+}
+
+@utility heading-2-mobile {
+  font-family: var(--font-sora), sans-serif;
+  font-size: var(--text-24);
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: var(--tracking-neg-06);
+}
+
+@utility heading-2-mobile-uppercase {
+  font-family: var(--font-sora), sans-serif;
+  font-size: var(--text-24);
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: var(--tracking-neg-06);
+  text-transform: uppercase;
+}
+
+@utility heading-3-mobile {
+  font-family: var(--font-sora), sans-serif;
+  font-size: var(--text-20);
+  font-weight: 600;
+  line-height: var(--leading-24);
+  letter-spacing: var(--tracking-neg-05);
+}
+
+@utility heading-4-mobile {
+  font-family: var(--font-sora), sans-serif;
+  font-size: var(--text-18);
+  font-weight: 600;
+  line-height: var(--leading-22);
+  letter-spacing: var(--tracking-neg-05);
+}
+
+/* HEADINGS - DESKTOP ---------- */
+
+@utility heading-2-desktop {
+  font-family: var(--font-sora), sans-serif;
+  font-size: var(--text-40);
+  font-weight: 600;
+  line-height: var(--leading-48);
+  letter-spacing: var(--tracking-neg-1);
+}
+
+@utility heading-2-desktop-uppercase {
+  font-family: var(--font-sora), sans-serif;
+  font-size: var(--text-40);
+  font-weight: 600;
+  line-height: var(--leading-48);
+  letter-spacing: var(--tracking-neg-1);
+  text-transform: uppercase;
+}
+
+@utility heading-display-desktop {
+  font-family: var(--font-sora), sans-serif;
+  font-size: var(--text-64);
+  font-weight: 600;
+  line-height: var(--leading-90);
+  letter-spacing: var(--tracking-neg-1);
+  text-transform: uppercase;
+}
+
+/* PARAGRAPH - XLARGE ---------- */
+
+@utility paragraph-xl {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-20);
+  font-weight: 400;
+  line-height: var(--leading-30);
+}
+
+@utility paragraph-xl-medium {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-20);
+  font-weight: 500;
+  line-height: var(--leading-30);
+}
+
+@utility paragraph-xl-semibold {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-20);
+  font-weight: 600;
+  line-height: var(--leading-30);
+}
+
+@utility paragraph-xl-bold {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-20);
+  font-weight: 700;
+  line-height: var(--leading-30);
+}
+
+/* PARAGRAPH - LARGE ---------- */
+
+@utility paragraph-lg {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-18);
+  font-weight: 400;
+  line-height: var(--leading-27);
+}
+
+@utility paragraph-lg-medium {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-18);
+  font-weight: 500;
+  line-height: var(--leading-27);
+}
+
+@utility paragraph-lg-semibold {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-18);
+  font-weight: 600;
+  line-height: var(--leading-27);
+}
+
+@utility paragraph-lg-bold {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-18);
+  font-weight: 700;
+  line-height: var(--leading-27);
+}
+
+/* PARAGRAPH - BODY ---------- */
+
+@utility paragraph-body {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-16);
+  font-weight: 400;
+  line-height: var(--leading-24);
+}
+
+@utility paragraph-body-medium {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-16);
+  font-weight: 500;
+  line-height: var(--leading-24);
+}
+
+@utility paragraph-body-semibold {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-16);
+  font-weight: 600;
+  line-height: var(--leading-24);
+}
+
+@utility paragraph-body-bold {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-16);
+  font-weight: 700;
+  line-height: var(--leading-24);
+}
+
+/* PARAGRAPH - SMALL ---------- */
+
+@utility paragraph-sm {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-14);
+  font-weight: 400;
+  line-height: var(--leading-20);
+  letter-spacing: var(--tracking-0);
+}
+
+@utility paragraph-sm-medium {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-14);
+  font-weight: 500;
+  line-height: var(--leading-20);
+  letter-spacing: var(--tracking-0);
+}
+
+@utility paragraph-sm-semibold {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-14);
+  font-weight: 600;
+  line-height: var(--leading-20);
+  letter-spacing: var(--tracking-0);
+}
+
+@utility paragraph-sm-bold {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-14);
+  font-weight: 700;
+  line-height: var(--leading-20);
+  letter-spacing: var(--tracking-0);
+}
+
+/* PARAGRAPH - XSMALL ---------- */
+
+@utility paragraph-xs {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-12);
+  font-weight: 400;
+  line-height: var(--leading-16);
+  letter-spacing: var(--tracking-0);
+}
+
+@utility paragraph-xs-medium {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-12);
+  font-weight: 500;
+  line-height: var(--leading-16);
+  letter-spacing: var(--tracking-0);
+}
+
+@utility paragraph-xs-semibold {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-12);
+  font-weight: 600;
+  line-height: var(--leading-16);
+  letter-spacing: var(--tracking-0);
+}
+
+@utility paragraph-xs-bold {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-12);
+  font-weight: 700;
+  line-height: var(--leading-16);
+  letter-spacing: var(--tracking-0);
+}
+
+/* LABELS ---------- */
+
+@utility label-lg {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-16);
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: var(--tracking-08);
+  text-transform: uppercase;
+}
+
+@utility label-lg-extrabold {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-16);
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: var(--tracking-0);
+  text-transform: uppercase;
+}
+
+@utility label-md {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-14);
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: var(--tracking-05);
+  text-transform: uppercase;
+}
+
+@utility label-sm {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-12);
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: var(--tracking-06);
+  text-transform: uppercase;
+}
+
+@utility label-xs {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-10);
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: var(--tracking-05);
+  text-transform: uppercase;
+}
+
+/* DATA ---------- */
+
+@utility data-lg {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-28);
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: var(--tracking-neg-1);
+}
+
+@utility data-md {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-24);
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: var(--tracking-neg-03);
+}
+
+@utility data-sm {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: var(--text-18);
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: var(--tracking-neg-02);
+}
+
+/* BUTTON ---------- */
+
+@utility button-lg {
+  font-family: var(--font-sora), sans-serif;
+  font-size: var(--text-18);
+  font-weight: 600;
+  line-height: 1;
+}
+
+@utility button-md {
+  font-family: var(--font-sora), sans-serif;
+  font-size: var(--text-16);
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* CODE ---------- */
+
+@utility code-md {
+  font-family:
+    var(--font-google-sans-code, ui-monospace), "SFMono-Regular", Consolas,
+    "Liberation Mono", monospace;
+  font-size: var(--text-16);
+  font-weight: 500;
+  line-height: var(
+    --leading-24
+  ); /* was leading-16 — check against the design */
+}
+
+/* NAV ITEMS ---------- */
+
+@utility nav-item-lg {
+  font-family: var(--font-sora), sans-serif;
+  font-size: var(--text-16);
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.08em;
+}
+
+@utility nav-item-sm {
+  font-family: var(--font-sora), sans-serif;
+  font-size: var(--text-12);
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.08em;
 }

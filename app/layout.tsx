@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
-import { DM_Sans, Sora } from 'next/font/google';
+import { DM_Sans, Google_Sans_Code, Sora } from 'next/font/google';
 import './globals.css';
+import Footer from '@/components/layout/Footer';
+import Header from '@/components/layout/Header';
 
 const sora = Sora({
   variable: '--font-sora',
@@ -9,6 +11,11 @@ const sora = Sora({
 
 const dmSans = DM_Sans({
   variable: '--font-dm-sans',
+  subsets: ['latin'],
+});
+
+const googleSansCode = Google_Sans_Code({
+  variable: '--font-google-sans-code',
   subsets: ['latin'],
 });
 
@@ -21,9 +28,13 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html
       lang="en"
-      className={`${sora.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${sora.variable} ${dmSans.variable} ${googleSansCode.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-bg-default text-fg">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
