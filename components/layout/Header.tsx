@@ -2,13 +2,16 @@
 
 import { ListIcon } from '@phosphor-icons/react/ssr';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useCallback, useState } from 'react';
 import Button from '@/components/primitives/Button';
+import { cn } from '@/lib/utils';
 import MobileMenu from './MobileMenu';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);
+  const pathname = usePathname();
   const navLinks = [
     {
       title: 'Services',
@@ -54,16 +57,24 @@ const Header = () => {
       <MobileMenu open={open} onClose={close} />
       <nav className="hidden lg:block">
         <ul className="flex flex-col gap-2 lg:flex-row lg:gap-5">
-          {navLinks.map(({ title, link }) => (
-            <li key={title}>
-              <Link
-                href={link}
-                className="block label-lg px-4 py-3 hover:border-b-2 hover:border-bg-brand"
-              >
-                {title}
-              </Link>
-            </li>
-          ))}
+          {navLinks.map(({ title, link }) => {
+            const active = pathname === link;
+            return (
+              <li key={title}>
+                <Link
+                  href={link}
+                  aria-current={active ? 'page' : undefined}
+                  className={cn(
+                    'label-lg flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-lg border-b-2 border-transparent px-4 py-3 transition-[background-color,box-shadow] hover:bg-bg-subtle hover:shadow-[inset_1px_1px_1.5px_0px_var(--color-mono-alpha-45)]',
+                    active &&
+                      'rounded-none border-bg-brand hover:bg-transparent hover:shadow-none',
+                  )}
+                >
+                  {title}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </header>

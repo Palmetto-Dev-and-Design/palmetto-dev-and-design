@@ -7,6 +7,7 @@ import SocialLinks, {
 import Projects from '@/components/sections/Projects';
 import Services from '@/components/sections/Services';
 import { projects } from '@/lib/projects';
+import WhyWorkWithUs from '@/components/sections/WhyWorkWithUs';
 
 const socials: SocialLink[] = [
   { type: 'email', href: 'hello@example.com' },
@@ -95,6 +96,7 @@ export default function Home() {
           See all projects
         </Button>
       </section>
+      <WhyWorkWithUs/>
     </>
   );
 }
