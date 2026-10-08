@@ -1,9 +1,9 @@
 const WebDesignPage = () => {
-    return (
-        <section>
-            <p>Web Design Page</p>
-        </section>
-    )
-}
+  return (
+    <section>
+      <p>Web Design Page</p>
+    </section>
+  );
+};
 
 export default WebDesignPage;
