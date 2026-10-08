@@ -41,7 +41,7 @@ const MobileMenu = ({ open, onClose }: MobileMenuProps) => {
       role="dialog"
       aria-modal="true"
       aria-label="Menu"
-      className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-bg-default px-6 py-6 lg:hidden"
+      className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-bg-default px-6 text-fg py-6 lg:hidden"
     >
       <div className="flex items-center justify-between">
         <Link href={'/'} onClick={onClose}>

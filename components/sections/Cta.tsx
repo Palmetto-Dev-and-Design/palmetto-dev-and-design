@@ -36,7 +36,7 @@ const Cta = () => (
         className="hidden w-full md:block"
       />
       <Button
-        href="#contact"
+        href="/contact"
         variant="charcoal"
         size="cta"
         iconR={<ArrowUpRightIcon />}

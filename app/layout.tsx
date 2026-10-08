@@ -32,7 +32,9 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
     >
       <body className="min-h-full flex flex-col bg-bg-default text-fg">
         <Header />
-        <main className="relative z-10 flex-1 bg-bg-default">{children}</main>
+        <main className="relative z-10 flex flex-1 flex-col bg-bg-default">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

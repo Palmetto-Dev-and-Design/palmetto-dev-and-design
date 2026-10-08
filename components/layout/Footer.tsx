@@ -11,6 +11,7 @@ import SocialLinks from '../primitives/SocialLinks';
 const navLinks = [
   {
     title: 'Services',
+    link: '/services',
     subLinks: serviceLinks,
   },
   {
@@ -127,7 +128,7 @@ const Footer = () => {
               <ul className="flex flex-col gap-6">
                 {navLinks.map((item) => (
                   <li key={item.title}>
-                    <Link href={item.link ?? services[0].link}>
+                    <Link href={item.link}>
                       {item.title}
                     </Link>
                   </li>
