@@ -14,10 +14,10 @@ type GlassCardProps = VasoProps;
 const GlassCard = ({
   className,
   children,
-  depth = 1.5,
-  blur = 0.1,
-  dispersion = false,
-  specular = 0.8,
+  depth = 2.5,
+  blur = 1,
+  dispersion = 0.8,
+  specular = 0.9,
   ...props
 }: GlassCardProps) => (
   <Vaso

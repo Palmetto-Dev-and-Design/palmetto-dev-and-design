@@ -1,9 +1,12 @@
+import { ArrowUpRightIcon } from '@phosphor-icons/react/ssr';
 import Image from 'next/image';
 import Button from '@/components/primitives/Button';
 import SocialLinks, {
   type SocialLink,
 } from '@/components/primitives/SocialLinks';
+import Projects from '@/components/sections/Projects';
 import Services from '@/components/sections/Services';
+import { projects } from '@/lib/projects';
 
 const socials: SocialLink[] = [
   { type: 'email', href: 'hello@example.com' },
@@ -68,6 +71,30 @@ export default function Home() {
         </div>
       </section>
       <Services />
+      <section className="flex flex-col items-center gap-16 bg-mono-900 py-20 text-fg-inverse md:items-stretch md:gap-10 md:px-6 lg:px-20">
+        <div className="flex flex-col items-center gap-16 md:w-full md:flex-row md:items-center md:justify-between md:gap-0">
+          <h2 className="display-lg">Our work</h2>
+          <Button
+            variant="outline"
+            onDark
+            size="sm"
+            iconR={<ArrowUpRightIcon />}
+            className="hidden md:inline-flex"
+          >
+            See all projects
+          </Button>
+        </div>
+        <Projects projects={projects} />
+        <Button
+          variant="outline"
+          onDark
+          size="sm"
+          iconR={<ArrowUpRightIcon />}
+          className="md:hidden"
+        >
+          See all projects
+        </Button>
+      </section>
     </>
   );
 }
