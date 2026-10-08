@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { useRef } from 'react';
 import Button from '../primitives/Button';
 import SlideRings from './SlideRings';
+import TitleRings from './TitleRings';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -18,12 +19,12 @@ const CIRCLE_TOP = 0.06;
 const CIRCLE_SIZE = 0.88;
 // The circle's text grows from START, to SETTLED once the circle is in place,
 // to full size once the circle has filled the stage
-const CIRCLE_TEXT_START = { mobile: 0.4, desktop: 0.2 };
-const CIRCLE_TEXT_SETTLED = { mobile: 0.7, desktop: 0.85 };
+const CIRCLE_TEXT_START = { mobile: 0.4, desktop: 0.2, wide: 0.2 };
+const CIRCLE_TEXT_SETTLED = { mobile: 0.7, desktop: 0.85, wide: 0.4 };
 // On desktop the circle enters from the right at START scale and grows to
 // SETTLED as it reaches the center
 const CIRCLE_SCALE_START = 0.85;
-const CIRCLE_SCALE_SETTLED = 1.8;
+const CIRCLE_SCALE_SETTLED = { desktop: 1.8, wide: 1 };
 // Where the last panel's mobile circles start, in px from its left edge
 const CIRCLES_START_LEFT = 40;
 // How small the last panel's text starts before growing to full size
@@ -56,10 +57,22 @@ const WhyWorkWithUs = () => {
 
       const mm = gsap.matchMedia();
       mm.add(
-        { desktop: '(min-width: 1024px)', mobile: '(max-width: 1023.98px)' },
+        {
+          desktop: '(min-width: 1024px)',
+          wide: '(min-width: 1280px)',
+          mobile: '(max-width: 1023.98px)',
+        },
         (ctx) => {
           const desktop = Boolean(ctx.conditions?.desktop);
-          const size = desktop ? 'desktop' : 'mobile';
+          const wide = Boolean(ctx.conditions?.wide);
+          const size = wide ? 'wide' : desktop ? 'desktop' : 'mobile';
+          // On wide stages the circle is small beside the stage's width, so it
+          // settles at its resting size and grows to fill in the next step
+          const settledScale = CIRCLE_SCALE_SETTLED[wide ? 'wide' : 'desktop'];
+
+          // GSAP takes over the transform, so centering is done here rather
+          // than with a CSS translate that it would clear
+          gsap.set('[data-circle]', { xPercent: -50 });
 
           const tl = gsap.timeline({
             scrollTrigger: {
@@ -104,7 +117,7 @@ const WhyWorkWithUs = () => {
               '+=0.4',
             ).to(
               '[data-circle]',
-              { scale: CIRCLE_SCALE_SETTLED, ease: 'power1.in', duration: 1.4 },
+              { scale: settledScale, ease: 'power1.in', duration: 1.4 },
               '<',
             );
           } else {
@@ -137,7 +150,7 @@ const WhyWorkWithUs = () => {
                 const { clientWidth: w, clientHeight: h } = stageEl;
                 const cover = Math.hypot(w, h) / (CIRCLE_SIZE * h);
                 // Never shrinks from the size it settled at on desktop
-                return desktop ? Math.max(cover, CIRCLE_SCALE_SETTLED) : cover;
+                return desktop ? Math.max(cover, settledScale) : cover;
               },
               ease: 'power2.in',
               duration: 1,
@@ -155,11 +168,17 @@ const WhyWorkWithUs = () => {
             )
             .fromTo(
               '[data-ring]',
-              // Shifted a full viewBox width, so each ring starts off its
-              // drawing's right edge
+              // Shifted a stage width, so each ring starts off the stage's
+              // right edge
               {
-                x: (_: number, ring: SVGPathElement) =>
-                  ring.ownerSVGElement?.viewBox.baseVal.width ?? 0,
+                x: (_: number, ring: SVGPathElement) => {
+                  const svg = ring.ownerSVGElement;
+                  if (!svg?.clientWidth) return 0;
+                  return (
+                    (stageEl.clientWidth * svg.viewBox.baseVal.width) /
+                    svg.clientWidth
+                  );
+                },
               },
               // Staggered so the last ring lands as the panel does
               {
@@ -225,7 +244,8 @@ const WhyWorkWithUs = () => {
         ref={stage}
         className="relative flex h-svh items-center justify-center overflow-hidden bg-pri-500 text-center"
       >
-        <h2 className="display-lg text-fg-inverse">
+        <TitleRings className="pointer-events-none absolute inset-0 size-full" />
+        <h2 className="relative display-lg text-fg-inverse">
           Why Work
           <br />
           With Us?
@@ -252,7 +272,7 @@ const WhyWorkWithUs = () => {
             top: `${CIRCLE_TOP * 100}%`,
             height: `${CIRCLE_SIZE * 100}%`,
           }}
-          className="invisible absolute left-1/2 aspect-square -translate-x-1/2 rounded-full bg-pri-500"
+          className="invisible absolute left-1/2 aspect-square rounded-full bg-pri-500"
         />
 
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-6">
@@ -283,7 +303,7 @@ const WhyWorkWithUs = () => {
           <SlideRings
             viewBox="-150 -12 776 774"
             preserveAspectRatio="xMidYMid meet"
-            className="pointer-events-none absolute left-[4%] top-[2%] hidden aspect-square w-[88%] lg:block"
+            className="pointer-events-none absolute left-[4%] top-[2%] hidden aspect-square w-[min(88%,120svh)] overflow-visible lg:block"
           />
           <div className="relative max-w-[22rem] text-left text-fg-inverse lg:max-w-[44rem]">
             <h3 className="display-lg">
@@ -320,7 +340,7 @@ const WhyWorkWithUs = () => {
             className="pointer-events-none absolute left-0 top-0 hidden h-[80%] w-auto max-w-none lg:block"
           />
           {/* Not positioned, so the button's offsetTop is measured from the panel */}
-          <div className="flex flex-1 items-center justify-center px-6 pb-10 lg:justify-start lg:pb-0 lg:pl-[38%] lg:pr-20">
+          <div className="flex flex-1 items-center justify-center px-6 pb-10 lg:justify-start lg:pb-0 lg:pl-[max(38%,calc(52.3svh+3rem))] lg:pr-20">
             <div className="max-w-[22rem] text-left text-fg lg:max-w-[44rem]">
               <div data-last-text>
                 <h3 className="display-lg">

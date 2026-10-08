@@ -4,10 +4,11 @@ import Button from '@/components/primitives/Button';
 import SocialLinks, {
   type SocialLink,
 } from '@/components/primitives/SocialLinks';
+import Process from '@/components/sections/Process';
 import Projects from '@/components/sections/Projects';
 import Services from '@/components/sections/Services';
-import { projects } from '@/lib/projects';
 import WhyWorkWithUs from '@/components/sections/WhyWorkWithUs';
+import { projects } from '@/lib/projects';
 
 const socials: SocialLink[] = [
   { type: 'email', href: 'hello@example.com' },
@@ -96,7 +97,8 @@ export default function Home() {
           See all projects
         </Button>
       </section>
-      <WhyWorkWithUs/>
+      <WhyWorkWithUs />
+      <Process />
     </>
   );
 }

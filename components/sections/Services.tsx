@@ -9,7 +9,7 @@ const mobileOrder = [development, design, localSeo];
 const desktopOrder = [design, development, localSeo];
 
 const Services = () => (
-  <section>
+  <section id="services">
     <div className="py-20 md:hidden">
       <div className="px-[63px] text-center">
         <h2 className="display-lg md:heading-2-desktop-uppercase">Services</h2>
