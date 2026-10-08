@@ -4,6 +4,7 @@ import Button from '@/components/primitives/Button';
 import SocialLinks, {
   type SocialLink,
 } from '@/components/primitives/SocialLinks';
+import Cta from '@/components/sections/Cta';
 import Process from '@/components/sections/Process';
 import Projects from '@/components/sections/Projects';
 import Services from '@/components/sections/Services';
@@ -99,6 +100,7 @@ export default function Home() {
       </section>
       <WhyWorkWithUs />
       <Process />
+      <Cta />
     </>
   );
 }

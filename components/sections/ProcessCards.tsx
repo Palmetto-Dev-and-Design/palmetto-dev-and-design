@@ -113,12 +113,12 @@ const ProcessCards = () => {
             >
               <div data-text>
                 <div className="lg:flex lg:items-start lg:gap-8">
-                  <div className="flex items-baseline gap-6 lg:w-56 lg:shrink-0 lg:items-start">
+                  <div className="flex items-start gap-6 lg:w-56 lg:shrink-0">
                     <span className="display-lg text-sec-100">
                       {stepNumber(i)}
                     </span>
                     {/* mt lowers the title's cap height to the number's: the number's taller line box puts its caps 3.7px lower */}
-                    <h3 className="heading-4-mobile uppercase text-sec-100 lg:mt-[3.7px]">
+                    <h3 className="heading-4-mobile uppercase text-sec-100 mt-[3.7px]">
                       {title}
                     </h3>
                   </div>

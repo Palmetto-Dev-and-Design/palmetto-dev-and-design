@@ -29,6 +29,13 @@ const CIRCLE_SCALE_SETTLED = { desktop: 1.8, wide: 1 };
 const CIRCLES_START_LEFT = 40;
 // How small the last panel's text starts before growing to full size
 const LAST_TEXT_SCALE = 0.8;
+// Once scrolling stops, the stage settles on the next slide that's fully in
+const SNAP = {
+  snapTo: 'labelsDirectional',
+  duration: { min: 0.25, max: 0.8 },
+  delay: 0.08,
+  ease: 'power2.inOut',
+} as const;
 
 /**
  * The stage pins on the "Why work with us?" title. Scrolling drops a light
@@ -83,24 +90,30 @@ const WhyWorkWithUs = () => {
               scrub: true,
               anticipatePin: 1,
               invalidateOnRefresh: true,
+              snap: SNAP,
             },
           });
+
+          tl.addLabel('title', 0);
 
           tl.fromTo(
             '[data-panel]',
             { yPercent: -100, autoAlpha: 1 },
             { yPercent: 0, ease: 'power2.inOut', duration: 1 },
-          ).fromTo(
-            '[data-panel-text] > *',
-            { autoAlpha: 0, y: 24 },
-            {
-              autoAlpha: 1,
-              y: 0,
-              ease: 'power1.out',
-              duration: 0.6,
-              stagger: 0.2,
-            },
-          );
+          )
+            .fromTo(
+              '[data-panel-text] > *',
+              { autoAlpha: 0, y: 24 },
+              {
+                autoAlpha: 1,
+                y: 0,
+                ease: 'power1.out',
+                duration: 0.6,
+                stagger: 0.2,
+              },
+            )
+            // Each label marks a slide that's fully in, for the scroll to snap to
+            .addLabel('honest');
 
           if (desktop) {
             // Starts just off the stage's right edge
@@ -160,6 +173,7 @@ const WhyWorkWithUs = () => {
               { scale: 1, ease: 'power1.inOut', duration: 1 },
               '<',
             )
+            .addLabel('invested')
             .fromTo(
               '[data-dark-panel]',
               { yPercent: 100, autoAlpha: 1 },
@@ -189,6 +203,7 @@ const WhyWorkWithUs = () => {
               },
               '<',
             )
+            .addLabel('proper')
             .fromTo(
               '[data-last-panel]',
               { xPercent: 100, autoAlpha: 1 },
@@ -232,6 +247,8 @@ const WhyWorkWithUs = () => {
               'lastIn',
             );
           }
+
+          tl.addLabel('end');
         },
       );
     },

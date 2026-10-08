@@ -18,28 +18,68 @@ const RINGS = [
   },
 ];
 
+const MOBILE_RINGS = [
+  {
+    stroke: '#CEBEA3',
+    opacity: 1,
+    d: 'M257.228 121.216C321.283 138.38 376.494 164.253 413.978 192.2C432.72 206.174 447.02 220.66 455.781 234.825C464.541 248.991 467.751 262.817 464.354 275.492C460.958 288.166 451.265 298.535 436.597 306.422C421.927 314.309 402.299 319.704 379.081 322.435C332.646 327.896 271.895 322.697 207.84 305.534C143.785 288.37 88.5739 262.497 51.0908 234.55C32.3489 220.576 18.0488 206.091 9.28851 191.925C0.528578 177.76 -2.68135 163.934 0.714664 151.26C4.11084 138.585 13.8037 128.216 28.4727 120.329C43.1422 112.441 62.7692 107.046 85.9872 104.315C132.422 98.8537 193.173 104.053 257.228 121.216Z',
+  },
+  {
+    stroke: '#F4F1EA',
+    opacity: 0.58,
+    d: 'M263.629 148.239C334.425 189.114 394.292 233.426 433.851 272.022C453.633 291.322 468.327 309.183 476.774 324.463C485.23 339.756 487.39 352.393 482.246 361.303C477.102 370.212 465.078 374.66 447.605 374.985C430.149 375.309 407.334 371.514 380.729 364.032C327.524 349.071 259.215 319.381 188.419 278.507C117.622 237.632 57.7561 193.32 18.1963 154.724C-1.58481 135.424 -16.2791 117.563 -24.7267 102.283C-33.1821 86.9895 -35.3419 74.353 -30.1978 65.4432C-25.0538 56.5335 -13.0304 52.0856 4.44224 51.7613C21.8986 51.4373 44.7141 55.2323 71.3184 62.7136C124.524 77.6752 192.832 107.365 263.629 148.239Z',
+  },
+  {
+    stroke: '#E1D8C7',
+    opacity: 1,
+    d: 'M251.792 95.5718C333.576 109.504 405.448 134.791 455.536 164.404C480.58 179.21 500.168 195.092 512.826 211.167C525.485 227.242 531.199 243.49 528.55 259.044C525.9 274.597 515.128 288.037 497.861 299.014C480.594 309.991 456.853 318.492 428.319 324.171C371.252 335.53 295.061 335.593 213.277 321.66C131.493 307.728 59.621 282.442 9.53355 252.829C-15.5107 238.023 -35.0983 222.141 -47.7569 206.066C-60.4155 189.991 -66.1306 173.742 -63.481 158.188C-60.8312 142.635 -50.0589 129.196 -32.7918 118.219C-15.5247 107.242 8.21639 98.7411 36.7507 93.0618C93.8177 81.7035 170.009 81.6396 251.792 95.5718Z',
+  },
+];
+
 /**
  * The rings behind the "Why work with us?" title. The drawing covers its box,
  * cropping rather than stretching, while the strokes stay a constant 1px.
  */
-const TitleRings = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    viewBox="0 0 1393 700"
-    preserveAspectRatio="xMidYMid slice"
-    fill="none"
-    aria-hidden="true"
-    {...props}
-  >
-    {RINGS.map(({ d, stroke, opacity }) => (
-      <path
-        key={d}
-        d={d}
-        stroke={stroke}
-        opacity={opacity}
-        vectorEffect="non-scaling-stroke"
-      />
-    ))}
-  </svg>
+const TitleRings = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
+  <>
+    {/* Mobile and tablet use their own drawing */}
+    <svg
+      viewBox="0 0 390 427"
+      preserveAspectRatio="xMidYMid slice"
+      fill="none"
+      aria-hidden="true"
+      className={`${className ?? ''} lg:hidden`}
+      {...props}
+    >
+      {MOBILE_RINGS.map(({ d, stroke, opacity }) => (
+        <path
+          key={d}
+          d={d}
+          stroke={stroke}
+          opacity={opacity}
+          vectorEffect="non-scaling-stroke"
+        />
+      ))}
+    </svg>
+    <svg
+      viewBox="0 0 1393 700"
+      preserveAspectRatio="xMidYMid slice"
+      fill="none"
+      aria-hidden="true"
+      className={`${className ?? ''} hidden lg:block`}
+      {...props}
+    >
+      {RINGS.map(({ d, stroke, opacity }) => (
+        <path
+          key={d}
+          d={d}
+          stroke={stroke}
+          opacity={opacity}
+          vectorEffect="non-scaling-stroke"
+        />
+      ))}
+    </svg>
+  </>
 );
 
 export default TitleRings;

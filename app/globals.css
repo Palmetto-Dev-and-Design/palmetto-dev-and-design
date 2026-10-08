@@ -159,8 +159,7 @@
   /* FONTS ---------- */
   /* --font-sora, --font-dm-sans and --font-google-sans-code come from next/font in layout.tsx */
 
-  --font-sans:
-    var(--font-dm-sans), sans-serif; 
+  --font-sans: var(--font-dm-sans), sans-serif;
   --font-display: var(--font-sora), sans-serif;
   --font-mono:
     var(--font-google-sans-code, ui-monospace), "SFMono-Regular", Consolas,
