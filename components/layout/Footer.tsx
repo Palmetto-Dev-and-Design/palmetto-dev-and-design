@@ -30,6 +30,9 @@ const navLinks = [
 
 const services = navLinks[0].subLinks ?? [];
 
+// The footer is fixed, so Next doesn't reliably scroll up when navigating from it
+const scrollToTop = () => window.scrollTo({ top: 0 });
+
 /**
  * The footer is fixed to the bottom of the screen, under the page. The spacer
  * holds the room it takes up at the end of the page, so scrolling to the end
@@ -55,13 +58,19 @@ const Footer = () => {
         <div ref={panelRef}>
           <div className="lg:hidden">
             <div className="flex flex-col items-center py-8">
-              <Image
-                src={'/footer-logo.png'}
-                alt=""
-                width={260}
-                height={208}
-                className="w-[143px] h-auto lg:w-[260px]"
-              />
+              <Link
+                href="/"
+                aria-label="Palmetto Dev & Design home"
+                onClick={scrollToTop}
+              >
+                <Image
+                  src={'/footer-logo.png'}
+                  alt=""
+                  width={260}
+                  height={208}
+                  className="w-[143px] h-auto lg:w-[260px]"
+                />
+              </Link>
               <nav className="py-8">
                 <ul className="flex flex-col items-center gap-4 uppercase font-semibold tracking-[0.08em]">
                   {navLinks.map((item) => (
@@ -117,13 +126,15 @@ const Footer = () => {
           </div>
 
           <div className="hidden lg:flex items-center justify-between gap-18 px-20 py-12 max-w-[1440px] mx-auto">
-            <Image
-              src={'/footer-logo.png'}
-              alt="Palmetto Dev & Design"
-              width={260}
-              height={208}
-              className="w-[200px] h-auto shrink-0"
-            />
+            <Link href="/" className="shrink-0" onClick={scrollToTop}>
+              <Image
+                src={'/footer-logo.png'}
+                alt="Palmetto Dev & Design"
+                width={260}
+                height={208}
+                className="w-[200px] h-auto"
+              />
+            </Link>
             <nav className="flex gap-18 label-lg">
               <ul className="flex flex-col gap-6">
                 {navLinks.map((item) => (
