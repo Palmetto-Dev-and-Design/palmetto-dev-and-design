@@ -141,7 +141,7 @@ const ServicesArc = ({
         {/* Narrow on tablet so the cards climbing the arc never cross it */}
         <div className="absolute left-[clamp(1.5rem,7vw,6.25rem)] top-1/2 max-w-[11.5rem] -translate-y-1/2 lg:max-w-[22rem]">
           <h2 className="display-lg lg:text-64 lg:leading-none">Services</h2>
-          <p className="paragraph-sm mt-4 lg:paragraph-body lg:mt-6">
+          <p className="paragraph-body mt-4 lg:paragraph-lg lg:mt-6">
             {servicesIntro}
           </p>
         </div>
@@ -152,7 +152,7 @@ const ServicesArc = ({
               <h3 className="heading-2-mobile text-pri-600 lg:w-40 lg:shrink-0">
                 {title}
               </h3>
-              <p className="paragraph-sm">{body}</p>
+              <p className="paragraph-body">{body}</p>
             </GlassCard>
             <Button
               href={link}
