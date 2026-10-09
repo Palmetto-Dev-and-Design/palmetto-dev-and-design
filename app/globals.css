@@ -128,6 +128,7 @@
   --color-bg-muted: var(--color-sec-200);
   --color-bg-brand: var(--color-pri-600);
   --color-bg-inverse: var(--color-mono-950);
+  --color-bg-inverse-muted: var(--color-mono-900);
 
   /* surface */
   --color-surface: var(--color-mono-0);

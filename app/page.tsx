@@ -36,8 +36,7 @@ export default function Home() {
         />
         <div className="flex flex-col md:flex-row items-center lg:mx-auto lg:max-w-[1280px] lg:justify-between py-10 px-6 lg:py-24">
           <h1 className="heading-2-mobile text-left max-w-[22rem] md:max-w-[660px]">
-            Websites for home-service companies that turn local searches into
-            booked jobs.
+            Websites that turn calls into customers for home-service pros.
           </h1>
           <div className="flex items-center justify-start w-full max-w-[22rem] md:w-auto md:max-w-none gap-14 md:gap-4 mt-8 md:mt-0">
             <Button
@@ -45,7 +44,7 @@ export default function Home() {
               size="sm"
               className="md:text-lg md:px-5 md:min-h-13"
             >
-              Get a free quote
+              Get started now
             </Button>
             <SocialLinks links={socials} />
           </div>
@@ -55,20 +54,14 @@ export default function Home() {
         <div className="h-px w-[55%] lg:w-[30%] bg-fg-inverse/40" />
         <div className="px-10 pt-10 lg:pt-20 lg:px-20">
           <h2 className="heading-1-mobile lg:heading-2-desktop lg:max-w-[850px]">
-            We make it easy for homeowners to find &amp; choose you.
+            Websites that turn calls into customers for home-service pros.
           </h2>
           <div className="mt-8 flex flex-col gap-4 paragraph-lg lg:max-w-[850px]">
             <p>
-              When homeowners need a service, they search online &amp; compare a
-              few of the companies they find. If your website is hard to use or
-              doesn&rsquo;t answer their questions, you can lose them before you
-              ever get the chance to talk.
+              Homeowners want fast answers when they search for help. If your site’s confusing or slow, they’ll move on – often before you ever get a call.
             </p>
             <p>
-              A good website does the opposite. It builds trust, answers the
-              basics upfront &amp; makes choosing you easier. That means more
-              customers &amp; less time spent answering the same questions over
-              the phone.
+              We build websites that earn trust & give people what they need up front, so they pick you over the competition. More booked jobs, less wasted time.
             </p>
           </div>
         </div>
@@ -78,8 +71,7 @@ export default function Home() {
         <div className="flex flex-col items-center gap-16 md:w-full md:flex-row md:items-center md:justify-between md:gap-0">
           <h2 className="display-lg">Our work</h2>
           <Button
-            variant="outline"
-            onDark
+            variant="primary"
             size="sm"
             iconR={<ArrowUpRightIcon />}
             className="hidden md:inline-flex"
@@ -89,8 +81,7 @@ export default function Home() {
         </div>
         <Projects projects={projects} />
         <Button
-          variant="outline"
-          onDark
+          variant="primary"
           size="sm"
           iconR={<ArrowUpRightIcon />}
           className="md:hidden"

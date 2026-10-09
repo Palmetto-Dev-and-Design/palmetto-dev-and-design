@@ -47,7 +47,7 @@ const SocialLinks = ({ links, className }: SocialLinksProps) => (
                 target: '_blank',
                 rel: 'noopener noreferrer',
               })}
-            className="block border border-fg rounded-md p-1 lg:p-2"
+            className="block border border-fg rounded-2xl p-1 lg:p-2"
           >
             <SocialIcon size={32} weight="fill" className="text-fg" />
           </Link>
