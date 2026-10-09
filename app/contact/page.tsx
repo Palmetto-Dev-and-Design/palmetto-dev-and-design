@@ -1,5 +1,10 @@
-import { AtIcon, MapPinIcon } from '@phosphor-icons/react/ssr';
+import {
+  ArrowUpRightIcon,
+  AtIcon,
+  MapPinIcon,
+} from '@phosphor-icons/react/ssr';
 import Image from 'next/image';
+import Button from '@/components/primitives/Button';
 import ContactForm from '@/components/sections/ContactForm';
 
 const details = [
@@ -24,7 +29,7 @@ const ContactPage = () => (
       className="pointer-events-none absolute bottom-0 left-0 h-auto w-[min(85%,654px)]"
     />
 
-    <div className="relative mx-auto grid max-w-5xl items-center gap-12 px-6 py-16 lg:grid-cols-[minmax(0,501px)_1fr] lg:gap-16 lg:py-24">
+    <div className="relative mx-auto grid max-w-5xl items-center gap-12 px-6 py-16 lg:grid-cols-[minmax(0,501px)_1fr] lg:gap-32 lg:py-24">
       <div className="mx-auto flex w-full max-w-[501px] flex-col gap-6 lg:order-2 lg:mx-0 lg:max-w-none">
         <h1 className="heading-2-desktop uppercase">Get in touch</h1>
         <p className="paragraph-lg max-w-sm">
@@ -45,6 +50,15 @@ const ContactPage = () => (
             </li>
           ))}
         </ul>
+        <Button
+          href="https://calendar.app.google/unvqgnjTRrZkptZz7"
+          variant="secondary"
+          size="sm"
+          iconR={<ArrowUpRightIcon />}
+          className="self-start lg:mt-6"
+        >
+          Schedule a discovery call
+        </Button>
       </div>
       <div className="mx-auto w-full max-w-[501px] lg:order-1 lg:mx-0">
         <ContactForm />

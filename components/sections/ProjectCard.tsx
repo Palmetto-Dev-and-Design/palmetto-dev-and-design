@@ -69,7 +69,6 @@ const ProjectCard = ({
       <Button
         href={href}
         variant="outline"
-        onDark
         size="xs"
         iconOnly
         aria-label={`View ${title} project`}
