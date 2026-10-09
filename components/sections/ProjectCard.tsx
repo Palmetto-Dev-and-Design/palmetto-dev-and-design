@@ -48,6 +48,8 @@ const ProjectCard = ({
   });
 
   return (
+    // biome-ignore lint/a11y/noStaticElementInteractions: hover/tap only reveal extra detail; keyboard users get it via focus on the link inside
+    // biome-ignore lint/a11y/useKeyWithClickEvents: the tap toggle is touch-only (see the hover: none check), keyboard uses focus
     <div
       ref={cardRef}
       className="relative h-full w-full overflow-hidden rounded-2xl"

@@ -58,10 +58,14 @@ export default function Home() {
           </h2>
           <div className="mt-8 flex flex-col gap-4 paragraph-lg lg:max-w-[850px]">
             <p>
-              Homeowners want fast answers when they search for help. If your site’s confusing or slow, they’ll move on – often before you ever get a call.
+              Homeowners want fast answers when they search for help. If your
+              site’s confusing or slow, they’ll move on – often before you ever
+              get a call.
             </p>
             <p>
-              We build websites that earn trust & give people what they need up front, so they pick you over the competition. More booked jobs, less wasted time.
+              We build websites that earn trust & give people what they need up
+              front, so they pick you over the competition. More booked jobs,
+              less wasted time.
             </p>
           </div>
         </div>
