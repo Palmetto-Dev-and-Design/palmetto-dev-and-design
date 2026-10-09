@@ -65,11 +65,12 @@ const variants: Record<Variant, string> = {
     'bg-bg-inverse text-action-fg hover:bg-mono-900 hover:shadow-[inset_1.5px_1.5px_2.2px_0_var(--color-bg-inverse)] active:shadow-none',
   outline:
     'border border-mono-900 text-fg hover:bg-mono-alpha-15 hover:shadow-[inset_1.5px_1.5px_2.2px_0_var(--color-bg-inverse)] active:bg-mono-alpha-25 active:shadow-[inset_1.5px_1.5px_2.2px_0_var(--color-bg-inverse)]',
-  ghost: 'text-fg hover:bg-bg-subtle active:bg-bg-muted',
+  ghost:
+    'text-fg hover:bg-bg-subtle hover:shadow-[inset_1.5px_1.5px_2.2px_0_var(--color-bg-inverse)] active:bg-bg-muted active:shadow-[inset_1.5px_1.5px_2.2px_0_var(--color-bg-inverse)]',
 };
 
 const outlineOnDark =
-  'border border-fg-inverse text-fg-inverse hover:bg-fg-inverse/10 active:bg-fg-inverse/20';
+  'border border-fg-inverse text-fg-inverse hover:bg-fg-inverse/10 hover:shadow-[inset_1.5px_1.5px_2.2px_0_var(--color-bg-inverse)] active:bg-fg-inverse/20 active:shadow-[inset_1.5px_1.5px_2.2px_0_var(--color-bg-inverse)]';
 
 const Button = ({
   variant = 'primary',
