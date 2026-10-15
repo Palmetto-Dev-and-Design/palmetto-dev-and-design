@@ -14,7 +14,6 @@ The website for **Palmetto Dev and Design**, a small studio that builds websites
 - **Glass effect:** [Vaso](https://github.com/huozhi/vaso) (refracting glass cards)
 - **Icons:** [Phosphor Icons](https://phosphoricons.com/)
 - **API:** [Hono](https://hono.dev/) mounted in a Next.js route handler, validated with [Zod](https://zod.dev/)
-- **Database:** Postgres on [Neon](https://neon.tech/), via [Drizzle ORM](https://orm.drizzle.team/)
 - **Email:** [Resend](https://resend.com/)
 - **Spam protection:** [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/) plus a honeypot field
 - **Linting/formatting:** [Biome](https://biomejs.dev/)
@@ -26,7 +25,6 @@ The website for **Palmetto Dev and Design**, a small studio that builds websites
 
 - [Node.js](https://nodejs.org/) 20.9 or later
 - [pnpm](https://pnpm.io/installation)
-- A Postgres database (a free [Neon](https://neon.tech/) project works)
 
 ### Installation
 
@@ -49,7 +47,6 @@ cp .env.example .env
 
 | Variable | Purpose |
 | --- | --- |
-| `DATABASE_URL` | Postgres connection string (used by the app and Drizzle) |
 | `RESEND_API_KEY` | Resend API key for sending contact emails |
 | `CONTACT_FROM_EMAIL` | Sender address for contact emails (must be on a domain verified in Resend) |
 | `CONTACT_TO_EMAIL` | Where contact form submissions are sent |
@@ -57,14 +54,6 @@ cp .env.example .env
 | `TURNSTILE_SECRET_KEY` | Turnstile secret key (server only, used to verify submissions) |
 
 Cloudflare publishes [test keys](https://developers.cloudflare.com/turnstile/troubleshooting/testing/) for local development.
-
-### Set Up the Database
-
-```bash
-pnpm db:migrate
-```
-
-This applies the migrations in `drizzle/` and creates the `contact_submissions` table.
 
 ### Run the Development Server
 
@@ -84,10 +73,6 @@ Open [http://localhost:3000](http://localhost:3000) in your browser. The page re
 | `pnpm lint` | Check the code with Biome |
 | `pnpm lint:fix` | Check and apply Biome's fixes |
 | `pnpm format` | Format the code with Biome |
-| `pnpm db:generate` | Generate a Drizzle migration from `db/schema.ts` |
-| `pnpm db:migrate` | Apply migrations to the database |
-| `pnpm db:push` | **Do not use.** It skips migrations; always use `db:generate` and `db:migrate` |
-| `pnpm db:studio` | Open Drizzle Studio to browse the data |
 
 ## Pages
 
@@ -110,13 +95,10 @@ Open [http://localhost:3000](http://localhost:3000) in your browser. The page re
 │   ├── layout/           # Header, MobileMenu, and the fixed Footer
 │   ├── primitives/       # Button, GlassCard, SocialLinks
 │   └── sections/         # Page sections (Cta, ProjectCard, Team, ContactForm, ...)
-├── db/                   # Drizzle client and schema
-├── drizzle/              # Generated SQL migrations
 ├── lib/                  # Content data (projects, services, process, nav), utils, API client
 ├── server/               # Hono app and routes (the contact endpoint)
 ├── public/               # Static assets (images, artwork)
 ├── biome.json            # Lint and format rules
-├── drizzle.config.ts     # Drizzle Kit configuration
 └── package.json
 ```
 
@@ -128,9 +110,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser. The page re
 
 1. is validated with the Zod schema in `lib/schema/contact.ts` (a filled-in honeypot field is silently accepted and dropped),
 2. is verified with Cloudflare Turnstile,
-3. is rate limited using saved submissions (3 per email per hour, 30 total per hour),
-4. is saved to the `contact_submissions` table, and
-5. is emailed to `CONTACT_TO_EMAIL` through Resend. The submission is saved first, so a failed email doesn't lose the lead, and `email_sent` records whether the email went out.
+3. is emailed to `CONTACT_TO_EMAIL` through Resend. Nothing is stored; if the email fails, the form shows an error so the visitor can retry.
 
 The client in `lib/api.ts` is a typed Hono client, so the form is type-checked against the route.
 

@@ -5,8 +5,10 @@ import {
   AtIcon,
   BriefcaseIcon,
   CheckCircleIcon,
+  CheckIcon,
   PhoneIcon,
 } from '@phosphor-icons/react/ssr';
+import Link from 'next/link';
 import { type ReactNode, type SubmitEvent, useRef, useState } from 'react';
 import { z } from 'zod';
 import { api } from '@/lib/api';
@@ -85,7 +87,11 @@ const ContactForm = () => {
       raw.currentWebsite = `https://${raw.currentWebsite}`;
     }
 
-    const result = contactSchema.safeParse({ ...raw, turnstileToken: token });
+    const result = contactSchema.safeParse({
+      ...raw,
+      consent: raw.consent === 'on',
+      turnstileToken: token,
+    });
     if (!result.success) {
       const fieldErrors = z.flattenError(result.error).fieldErrors;
       setErrors(
@@ -212,6 +218,37 @@ const ContactForm = () => {
             />
             <ErrorText id="message-error">{errors.message}</ErrorText>
           </label>
+          <div>
+            <label className="flex cursor-pointer items-start gap-3">
+              <span className="relative mt-0.5 flex size-5 shrink-0">
+                <input
+                  type="checkbox"
+                  name="consent"
+                  className="peer size-5 cursor-pointer appearance-none rounded bg-bg-default shadow-[1px_1px_1.5px_0px_#2D2D2D73_inset] checked:bg-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fg"
+                  aria-invalid={errors.consent ? true : undefined}
+                  aria-describedby={
+                    errors.consent ? 'consent-error' : undefined
+                  }
+                />
+                <CheckIcon
+                  weight="bold"
+                  className="pointer-events-none absolute inset-0 m-auto size-3.5 text-fg-inverse opacity-0 peer-checked:opacity-100"
+                />
+              </span>
+              <span className="text-sm text-fg transition-colors duration-300 group-focus-within:text-fg-inverse motion-reduce:transition-none">
+                I agree to the{' '}
+                <Link
+                  href="/privacy-policy"
+                  target="_blank"
+                  className="underline underline-offset-2"
+                >
+                  Privacy Policy
+                </Link>
+                .
+              </span>
+            </label>
+            <ErrorText id="consent-error">{errors.consent}</ErrorText>
+          </div>
           <div>
             <Turnstile
               ref={turnstile}

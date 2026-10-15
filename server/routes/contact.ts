@@ -1,15 +1,8 @@
 import { zValidator } from '@hono/zod-validator';
-import { and, count, eq, gte } from 'drizzle-orm';
 import { Hono } from 'hono';
 import { z } from 'zod';
-import { db } from '@/db';
-import { contactSubmissions } from '@/db/schema';
 import { getResend } from '@/lib/email';
 import { contactSchema } from '@/lib/schema/contact';
-
-const WINDOW_MS = 60 * 60 * 1000;
-const MAX_PER_EMAIL = 3;
-const MAX_TOTAL = 30;
 
 export const contact = new Hono().post(
   '/',
@@ -54,53 +47,6 @@ export const contact = new Hono().post(
       );
     }
 
-    // Rate limit using the saved submissions: per email, plus a global cap
-    // as a backstop against someone rotating addresses.
-    try {
-      const since = new Date(Date.now() - WINDOW_MS);
-      const [[mine], [all]] = await Promise.all([
-        db
-          .select({ n: count() })
-          .from(contactSubmissions)
-          .where(
-            and(
-              eq(contactSubmissions.email, email),
-              gte(contactSubmissions.createdAt, since),
-            ),
-          ),
-        db
-          .select({ n: count() })
-          .from(contactSubmissions)
-          .where(gte(contactSubmissions.createdAt, since)),
-      ]);
-      if (mine.n >= MAX_PER_EMAIL || all.n >= MAX_TOTAL) {
-        return c.json({ ok: false, message: 'Too many submissions.' }, 429);
-      }
-    } catch (err) {
-      console.error('Contact rate limit check failed', err);
-    }
-
-    let id: number;
-    try {
-      const [submission] = await db
-        .insert(contactSubmissions)
-        .values({
-          name,
-          phone,
-          email,
-          company,
-          currentWebsite: currentWebsite || null,
-          message,
-        })
-        .returning({ id: contactSubmissions.id });
-      id = submission.id;
-    } catch (err) {
-      console.error('Contact insert failed', err);
-      return c.json({ ok: false, message: 'Something went wrong.' }, 500);
-    }
-
-    // The lead is saved; a failed email shouldn't fail the request.
-    let emailSent = false;
     try {
       const from = process.env.CONTACT_FROM_EMAIL;
       const to = process.env.CONTACT_TO_EMAIL;
@@ -122,17 +68,9 @@ export const contact = new Hono().post(
         ].join('\n'),
       });
       if (error) throw new Error(error.message);
-      emailSent = true;
     } catch (err) {
       console.error('Contact email failed', err);
-    }
-
-    if (emailSent) {
-      await db
-        .update(contactSubmissions)
-        .set({ emailSent })
-        .where(eq(contactSubmissions.id, id))
-        .catch((err) => console.error('Contact update failed', err));
+      return c.json({ ok: false, message: 'Something went wrong.' }, 500);
     }
 
     return c.json({ ok: true });

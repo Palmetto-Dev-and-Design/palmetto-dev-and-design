@@ -118,8 +118,9 @@ const Footer = () => {
               <div className="text-[.75rem] pt-6 text-fg-muted">
                 <p>&copy; Palmetto Dev & Design, 2026</p>
                 <p>
-                  <strong>Privacy Policy</strong> |{' '}
-                  <strong>Cookie settings</strong>
+                  <Link href="/privacy-policy" className="hover:underline">
+                    <strong>Privacy Policy</strong>
+                  </Link>
                 </p>
               </div>
             </div>
@@ -158,7 +159,9 @@ const Footer = () => {
               </div>
               <p className="paragraph-xs text-fg-muted">
                 &copy; Palmetto Dev & Design, 2026 &nbsp;|&nbsp;{' '}
-                <strong>Privacy Policy</strong> <strong>Cookie settings</strong>
+                <Link href="/privacy-policy" className="hover:underline">
+                  <strong>Privacy Policy</strong>
+                </Link>
               </p>
             </div>
           </div>
