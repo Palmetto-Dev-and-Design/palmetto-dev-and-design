@@ -38,7 +38,7 @@ const Header = () => {
   return (
     <header
       className={cn(
-        'relative px-6 py-6 lg:px-20 lg:py-16 flex justify-between items-center lg:items-start',
+        'relative z-20 bg-bg-default px-6 py-6 lg:px-20 lg:py-16 flex justify-between items-center lg:items-start',
         onBrand && 'bg-pri-500 text-fg-inverse',
         onDark && 'bg-bg-inverse-muted text-fg-inverse',
       )}

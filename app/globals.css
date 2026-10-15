@@ -241,6 +241,15 @@
   text-transform: uppercase;
 }
 
+@utility display-md {
+  font-family: var(--font-sora), sans-serif;
+  font-size: var(--text-32);
+  font-weight: 600;
+  line-height: var(--leading-38);
+  letter-spacing: var(--tracking-neg-1);
+  text-transform: uppercase;
+}
+
 @utility display-lg {
   font-family: var(--font-sora), sans-serif;
   font-size: var(--text-40);

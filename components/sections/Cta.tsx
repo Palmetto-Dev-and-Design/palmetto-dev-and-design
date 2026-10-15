@@ -18,7 +18,7 @@ const Note = ({
 type CtaProps = {
   title?: string;
   description?: string;
-  buttonLabel?: string;
+  buttonLabel?: ReactNode;
   buttonHref?: string;
   /** Small line under the button */
   note?: ReactNode;
