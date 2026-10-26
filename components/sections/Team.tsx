@@ -44,11 +44,13 @@ const team: Member[] = [
     name: 'Linn Johansen',
     role: 'UI/UX Designer',
     location: 'Portland, OR',
-    image: null,
+    image: '/lynn.png',
     RoleIcon: DevicesIcon,
     light: true,
     bio: [
-      'Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.',
+      'Linn, based in Portland, OR, is Palmetto’s UI/UX designer & co-founder. Originally from Sweden, she began studying web design in 2019 while pursuing digital design in Stockholm, and has been fascinated by purposeful digital experiences ever since.',
+      'Linn is dedicated to her clients & their users, approaching each project with empathy & a genuine desire to help businesses thrive through outstanding digital experiences.',
+      'With over 15 years in creative fields and a lifelong passion for creativity, Linn offers a sharp design eye paired with a strategic mindset.',
     ],
   },
 ];
@@ -144,7 +146,7 @@ const Team = () => {
                 alt={name}
                 fill
                 sizes="(min-width: 1024px) 310px, 200px"
-                className="object-cover"
+                className="object-cover transition-[filter] duration-300 group-hover:grayscale group-focus-visible:grayscale"
               />
             );
             return (
@@ -159,9 +161,24 @@ const Team = () => {
                       type="button"
                       onClick={() => open(name, light)}
                       aria-label={`Read about ${name}`}
-                      className={cn(photoClass, 'cursor-pointer')}
+                      className={cn(photoClass, 'group cursor-pointer')}
                     >
                       {photo}
+                      <span
+                        aria-hidden
+                        className="absolute inset-0 flex items-center justify-center font-sans text-[length:var(--text-18)] leading-[var(--leading-22)] font-semibold tracking-[4px] text-white uppercase opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
+                      >
+                        {/* The PNGs have transparent rounded corners, so the
+                            tint is masked to the photo's own shape. */}
+                        <span
+                          className="absolute inset-0 bg-mono-950/85 mask-cover"
+                          style={{
+                            maskImage: `url(${image})`,
+                            WebkitMaskImage: `url(${image})`,
+                          }}
+                        />
+                        <span className="relative">Read bio</span>
+                      </span>
                     </button>
                   ) : (
                     <div className={cn(photoClass, !image && 'bg-bg-inverse')}>
