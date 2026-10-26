@@ -42,25 +42,42 @@ const ProcessCards = () => {
       if (!stageEl) return;
       const cards = gsap.utils.toArray<HTMLElement>('[data-step]', stageEl);
 
+      // Setters are built once: gsap.set() per card per frame creates a tween
+      // each time, which is what made the wheel stutter.
+      const rows = cards.map((card) => {
+        gsap.set(card, { yPercent: -50, transformPerspective: 900 });
+        const text = card.querySelector<HTMLElement>('[data-text]');
+        return {
+          card,
+          y: gsap.quickSetter(card, 'y', 'px'),
+          scale: gsap.quickSetter(card, 'scale'),
+          rotationX: gsap.quickSetter(card, 'rotationX', 'deg'),
+          opacity: text ? gsap.quickSetter(text, 'opacity') : null,
+          visible: false,
+        };
+      });
+
       // position is how many steps the wheel has turned. Card i is at the
       // center when position equals i, and one step below it at i - 1.
       const render = (position: number) => {
         const gap = STEP_GAP * stageEl.clientHeight;
-        cards.forEach((card, i) => {
+        rows.forEach((row, i) => {
           const offset = i - position;
           const away = Math.abs(offset);
-          const alpha = Math.max(0, 1 - away / FADE_RANGE);
-          gsap.set(card, {
-            y: offset * gap,
-            yPercent: -50,
-            scale: Math.max(0, 1 - SCALE_PER_STEP * away),
-            rotationX: -offset * TILT_PER_STEP,
-            // The glass is never faded: opacity on the card would stop its
-            // liquid glass seeing the artwork behind. Only the text fades.
-            visibility: away < HIDE_RANGE ? 'visible' : 'hidden',
-            transformPerspective: 900,
-          });
-          gsap.set(card.querySelector('[data-text]'), { opacity: alpha });
+          const visible = away < HIDE_RANGE;
+          // Cards out of range are hidden (and skipped), so their glass isn't
+          // repainted while off stage.
+          if (visible !== row.visible) {
+            row.card.style.visibility = visible ? 'visible' : 'hidden';
+            row.visible = visible;
+          }
+          if (!visible) return;
+          row.y(offset * gap);
+          row.scale(Math.max(0, 1 - SCALE_PER_STEP * away));
+          row.rotationX(-offset * TILT_PER_STEP);
+          // The glass is never faded: opacity on the card would stop its
+          // liquid glass seeing the artwork behind. Only the text fades.
+          row.opacity?.(Math.max(0, 1 - away / FADE_RANGE));
         });
       };
 
@@ -103,7 +120,7 @@ const ProcessCards = () => {
           <li
             key={title}
             data-step
-            className="invisible absolute inset-x-0 top-1/2"
+            className="invisible absolute inset-x-0 top-1/2 will-change-transform"
           >
             <GlassCard
               className="w-full p-5"

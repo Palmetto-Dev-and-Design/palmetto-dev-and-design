@@ -82,6 +82,12 @@ const ServiceSteps = ({
       mm.add('(min-width: 1024px)', () => {
         const items = gsap.utils.toArray<HTMLElement>('[data-step]', stageEl);
         const state = { progress: 0 };
+        const ease = gsap.parseEase('power2.out');
+        const setItems = items.map((item) => ({
+          x: gsap.quickSetter(item, 'x', 'px'),
+          y: gsap.quickSetter(item, 'y', 'px'),
+          opacity: gsap.quickSetter(item, 'opacity'),
+        }));
         let width = 0;
         let height = 0;
 
@@ -97,15 +103,14 @@ const ServiceSteps = ({
               1,
               state.progress * (1 + 0.25 * (n - 1)) - i * 0.25,
             );
-            const eased = gsap.parseEase('power2.out')(own);
+            const eased = ease(own);
             const slot = i - (n - 1) / 2 + (1 - eased) * TRAVEL;
             const dy = slot * gap;
             const bend = radius - Math.sqrt(Math.max(0, radius ** 2 - dy ** 2));
-            gsap.set(item, {
-              x: STEP_APEX_X * width + bend,
-              y: height / 2 + dy - item.offsetHeight / 2,
-              opacity: own,
-            });
+            const set = setItems[i];
+            set.x(STEP_APEX_X * width + bend);
+            set.y(height / 2 + dy - item.offsetHeight / 2);
+            set.opacity(own);
           });
         };
 
@@ -141,23 +146,35 @@ const ServiceSteps = ({
       mm.add('(max-width: 1023px)', () => {
         const cards = Array.from(list.children) as HTMLElement[];
         // Each step shrinks and fades by how far it is from the center
+        const setCards = cards.map((card) => ({
+          scale: gsap.quickSetter(card, 'scale'),
+          opacity: gsap.quickSetter(card, 'opacity'),
+        }));
         const update = () => {
           const center = list.scrollLeft + list.clientWidth / 2;
-          for (const card of cards) {
+          cards.forEach((card, i) => {
             const dx = card.offsetLeft + card.offsetWidth / 2 - center;
             const k = Math.min(1, Math.abs(dx) / card.offsetWidth);
-            gsap.set(card, {
-              scale: 1 - (1 - MIN_SCALE) * k,
-              opacity: 1 - (1 - MIN_OPACITY) * k,
-            });
-          }
+            setCards[i].scale(1 - (1 - MIN_SCALE) * k);
+            setCards[i].opacity(1 - (1 - MIN_OPACITY) * k);
+          });
+        };
+        // Scroll events can outpace the display: apply once per frame
+        let frame = 0;
+        const onScroll = () => {
+          if (frame) return;
+          frame = requestAnimationFrame(() => {
+            frame = 0;
+            update();
+          });
         };
         update();
-        list.addEventListener('scroll', update, { passive: true });
+        list.addEventListener('scroll', onScroll, { passive: true });
         const observer = new ResizeObserver(update);
         observer.observe(list);
         return () => {
-          list.removeEventListener('scroll', update);
+          list.removeEventListener('scroll', onScroll);
+          cancelAnimationFrame(frame);
           observer.disconnect();
           gsap.set(cards, { clearProps: 'all' });
         };

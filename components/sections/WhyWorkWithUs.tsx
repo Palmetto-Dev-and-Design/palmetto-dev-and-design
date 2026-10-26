@@ -270,7 +270,7 @@ const WhyWorkWithUs = () => {
 
         <div
           data-panel
-          className="invisible absolute inset-0 flex items-center justify-center bg-bg-default px-6 lg:justify-start lg:px-20"
+          className="invisible absolute inset-0 flex items-center justify-center bg-bg-default px-6 will-change-transform lg:justify-start lg:px-20"
         >
           <div className="absolute left-0 top-[26%] hidden h-px w-[28%] bg-border lg:block" />
           <div data-panel-text className="max-w-[22rem] text-left lg:max-w-md">
@@ -289,13 +289,13 @@ const WhyWorkWithUs = () => {
             top: `${CIRCLE_TOP * 100}%`,
             height: `${CIRCLE_SIZE * 100}%`,
           }}
-          className="invisible absolute left-1/2 aspect-square rounded-full bg-pri-500"
+          className="invisible absolute left-1/2 aspect-square rounded-full bg-pri-500 will-change-transform"
         />
 
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-6">
           <div
             data-circle-text
-            className="invisible max-w-[22rem] text-left text-fg-inverse lg:max-w-[53rem]"
+            className="invisible max-w-[22rem] text-left text-fg-inverse will-change-transform lg:max-w-[53rem]"
           >
             <h3 className="display-lg">
               We&rsquo;re
@@ -313,7 +313,7 @@ const WhyWorkWithUs = () => {
 
         <div
           data-dark-panel
-          className="invisible absolute inset-0 flex items-center justify-center overflow-hidden bg-bg-inverse px-6 lg:justify-start lg:pl-[15%] lg:pr-20"
+          className="invisible absolute inset-0 flex items-center justify-center overflow-hidden bg-bg-inverse px-6 will-change-transform lg:justify-start lg:pl-[15%] lg:pr-20"
         >
           <SlideRings className="pointer-events-none absolute inset-x-0 top-[5%] h-[90%] w-full lg:hidden" />
           {/* The whole ring drawing, uncropped and kept in proportion */}
@@ -337,7 +337,7 @@ const WhyWorkWithUs = () => {
 
         <div
           data-last-panel
-          className="invisible absolute inset-0 flex flex-col overflow-hidden bg-bg-default"
+          className="invisible absolute inset-0 flex flex-col overflow-hidden bg-bg-default will-change-transform"
         >
           <Image
             data-last-circles

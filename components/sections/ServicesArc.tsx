@@ -55,6 +55,17 @@ const ServicesArc = ({
           stageEl,
         );
         gsap.set(items, { transformOrigin: '0 0' });
+        // quickSetters skip the per-call tween gsap.set() builds, which adds
+        // up when every card is repositioned on each scroll frame
+        const setArc = {
+          x: gsap.quickSetter(arcEl, 'x', 'px'),
+          y: gsap.quickSetter(arcEl, 'y', 'px'),
+        };
+        const setItems = items.map((item) => ({
+          x: gsap.quickSetter(item, 'x', 'px'),
+          y: gsap.quickSetter(item, 'y', 'px'),
+          scale: gsap.quickSetter(item, 'scale'),
+        }));
 
         // progress: card i is centered when progress === i. It starts at -1 so
         // the first card begins low on the arc and climbs in.
@@ -71,9 +82,10 @@ const ServicesArc = ({
           const step = Math.asin(
             Math.min(SIDE_OFFSET, height * 0.345) / ARC_RADIUS,
           );
-          gsap.set(arcEl, { x: cx - ARC_CENTER.x, y: cy - ARC_CENTER.y });
+          setArc.x(cx - ARC_CENTER.x);
+          setArc.y(cy - ARC_CENTER.y);
 
-          items.forEach((item, i) => {
+          items.forEach((_, i) => {
             // angle above (+) or below (-) the arc's middle
             const theta = step * (state.progress - i);
             const scale = Math.max(
@@ -83,11 +95,10 @@ const ServicesArc = ({
             // the arc crosses small cards further along their width
             const anchor = Math.min(0.6, 0.3 + (1 - scale) * 0.9);
             const { w, h } = sizes[i];
-            gsap.set(item, {
-              x: cx + ARC_RADIUS * Math.cos(theta) - scale * anchor * w,
-              y: cy - ARC_RADIUS * Math.sin(theta) - (scale * h) / 2,
-              scale,
-            });
+            const set = setItems[i];
+            set.x(cx + ARC_RADIUS * Math.cos(theta) - scale * anchor * w);
+            set.y(cy - ARC_RADIUS * Math.sin(theta) - (scale * h) / 2);
+            set.scale(scale);
           });
         };
 
@@ -147,7 +158,11 @@ const ServicesArc = ({
         </div>
 
         {services.map(({ title, body, link }) => (
-          <div key={title} data-arc-item className="absolute left-0 top-0">
+          <div
+            key={title}
+            data-arc-item
+            className="absolute left-0 top-0 will-change-transform"
+          >
             <GlassCard className="flex w-[clamp(21rem,44vw,39.75rem)] flex-col gap-3 lg:flex-row lg:gap-8">
               <h3 className="heading-2-mobile text-pri-600 lg:w-40 lg:shrink-0">
                 {title}
