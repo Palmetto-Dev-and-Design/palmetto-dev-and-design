@@ -16,6 +16,8 @@ const Header = () => {
   const onBrand = pathname === '/contact';
   const onDark = pathname === '/work';
   const tinted = onBrand || onDark;
+  // The About hero artwork pokes up behind the header, so don't paint over it
+  const overHero = pathname === '/about';
   const navLinks = [
     {
       title: 'Services',
@@ -41,6 +43,7 @@ const Header = () => {
         'relative z-20 bg-bg-default px-6 py-6 lg:px-20 lg:py-16 flex justify-between items-center lg:items-start',
         onBrand && 'bg-pri-500 text-fg-inverse',
         onDark && 'bg-bg-inverse-muted text-fg-inverse',
+        overHero && 'bg-transparent',
       )}
     >
       <Link href={'/'}>
