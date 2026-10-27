@@ -8,19 +8,11 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    image: '/project-placeholder.jpg',
-    category: 'Webdesign',
-    title: 'Technician LLC',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque.',
-    href: '/',
-  },
-  {
-    image: '/project-placeholder.jpg',
+    image: '/stanley-garage-door.png',
     category: 'Webdesign',
     title: 'Stanley Garage Door Specialist',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque.',
-    href: '/',
+      'A clean, mobile-friendly website for a local garage door repair and installation company, built to turn searches into service calls.',
+    href: 'https://stanleygaragedoorspecialist.com/',
   },
 ];

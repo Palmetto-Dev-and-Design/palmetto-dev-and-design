@@ -67,7 +67,7 @@ const ProjectCard = ({
       onFocus={() => reveal(true)}
       onBlur={() => reveal(false)}
     >
-      <Image src={image} alt="" fill className="object-cover" />
+      <Image src={image} alt="" fill className="bg-white object-contain object-top" />
       <Button
         href={href}
         variant="outline"
