@@ -12,6 +12,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import { type ReactNode, useRef } from 'react';
+import { quickScale } from '@/lib/gsap';
 import type { HowItWorksStep } from '@/lib/services';
 import Button from '../primitives/Button';
 
@@ -147,7 +148,7 @@ const ServiceSteps = ({
         const cards = Array.from(list.children) as HTMLElement[];
         // Each step shrinks and fades by how far it is from the center
         const setCards = cards.map((card) => ({
-          scale: gsap.quickSetter(card, 'scale'),
+          scale: quickScale(card),
           opacity: gsap.quickSetter(card, 'opacity'),
         }));
         const update = () => {

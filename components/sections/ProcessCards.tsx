@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import { useRef } from 'react';
+import { quickScale } from '@/lib/gsap';
 import { processSteps } from '@/lib/process';
 import Button from '../primitives/Button';
 import GlassCard from '../primitives/GlassCard';
@@ -50,7 +51,7 @@ const ProcessCards = () => {
         return {
           card,
           y: gsap.quickSetter(card, 'y', 'px'),
-          scale: gsap.quickSetter(card, 'scale'),
+          scale: quickScale(card),
           rotationX: gsap.quickSetter(card, 'rotationX', 'deg'),
           opacity: text ? gsap.quickSetter(text, 'opacity') : null,
           visible: false,

@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import { useRef } from 'react';
+import { quickScale } from '@/lib/gsap';
 import type { Service } from '@/lib/services';
 import { servicesIntro } from '@/lib/services';
 import Button from '../primitives/Button';
@@ -64,7 +65,7 @@ const ServicesArc = ({
         const setItems = items.map((item) => ({
           x: gsap.quickSetter(item, 'x', 'px'),
           y: gsap.quickSetter(item, 'y', 'px'),
-          scale: gsap.quickSetter(item, 'scale'),
+          scale: quickScale(item),
         }));
 
         // progress: card i is centered when progress === i. It starts at -1 so
